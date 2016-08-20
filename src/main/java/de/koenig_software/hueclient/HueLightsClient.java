@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author Michael on 24.07.2016.
  */
 @Component
-@FeignClient("hue")
+@FeignClient(name="hue", url = "${hue.server.root}")
 public interface HueLightsClient {
 
     @RequestMapping(path = "/api/{username}/lights", method = GET)
