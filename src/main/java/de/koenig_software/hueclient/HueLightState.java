@@ -1,11 +1,15 @@
 package de.koenig_software.hueclient;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 /**
  * Created by Michael on 24.07.2016.
  */
 @Data
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 public class HueLightState {
 
     /**
@@ -16,12 +20,12 @@ public class HueLightState {
      * Brightness of the light. This is a scale from the minimum brightness the light is capable of,
      * 1, to the maximum capable brightness, 254.
      */
-    private int     bri;
+    private int bri;
     /**
      * Hue of the light. This is a wrapping value between 0 and 65535. Both 0 and 65535 are red,
      * 25500 is green and 46920 is blue.
      */
-    private int     hue;
+    private int hue;
 
     /**
      * Saturation of the light. 254 is the most saturated (colored) and 0 is the least saturated
@@ -50,7 +54,7 @@ public class HueLightState {
      * Note that this contains the last alert sent to the light and not its current state. i.e.
      * After the breathe cycle has finished the bridge does not reset the alert to "none".
      */
-    private int    ct;
+    private int ct;
     /**
      * The dynamic effect of the light, can either be “none” or “colorloop”.
      * <p>
@@ -66,7 +70,9 @@ public class HueLightState {
      */
     private String colormode;
 
-    /** Indicates if a light can be reached by the bridge. */
+    /**
+     * Indicates if a light can be reached by the bridge.
+     */
     private boolean reachable;
 
 }
